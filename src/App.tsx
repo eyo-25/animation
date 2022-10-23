@@ -1,6 +1,7 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import Home from './component/Home';
-import { darkTheme } from './theme';
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import AppRouter from "./AppRouter";
+import Home from "./component/Home";
+import { darkTheme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -65,15 +66,14 @@ a {
   text-decoration:none;
   color: inherit;
 }
-`
-
+`;
 
 function App() {
   return (
     <>
       <ThemeProvider theme={darkTheme}>
         <GlobalStyle></GlobalStyle>
-        <Home></Home>
+        <AppRouter />
       </ThemeProvider>
     </>
   );

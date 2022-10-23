@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import { motion, useMotionValue, useTransform, useScroll, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  useScroll,
+  AnimatePresence,
+} from "framer-motion";
 import { useState } from "react";
 
 const Wrapper = styled(motion.div)`
@@ -11,7 +17,7 @@ const Wrapper = styled(motion.div)`
   align-items: center;
   flex-direction: column;
 `;
-  
+
 const Box = styled(motion.div)`
   width: 200px;
   height: 200px;
@@ -27,60 +33,60 @@ const Box = styled(motion.div)`
 `;
 
 const boxVariants = {
-  entry: (isback:boolean) =>( {
-    x: isback? -500 : 500,
+  entry: (isback: boolean) => ({
+    x: isback ? -500 : 500,
     opacity: 0,
-    scale: 0
+    scale: 0,
   }),
-  center:{
+  center: {
     x: 0,
     opacity: 1,
     scale: 1,
-    transition:{
+    transition: {
       duration: 0.2,
-    }
+    },
   },
-  exit: (isback:boolean) =>({
+  exit: (isback: boolean) => ({
     x: isback ? 500 : -500,
     opacity: 0,
     scale: 0,
-    transition:{
+    transition: {
       duration: 0.3,
-    }
-  })
-}
+    },
+  }),
+};
 
 // AnimatePresence는 항상 visible상태여야 되서 {showing? <Box/>:null}안에 못 넣는다
 
-function Home(){
-    const [visible, setVisible] = useState(1)
-    const [isback, setIsBack] = useState(false)
-    const next = () => {
-      setIsBack(false)
-      setVisible(prev=>prev === 10 ? 10: prev + 1 )
-    }
-    const prev = () => {
-      setIsBack(true)
-      setVisible(prev=>prev === 1 ? 1: prev - 1 )
-    }
-    return (
-        <Wrapper>
-          <AnimatePresence exitBeforeEnter custom={isback}>
-            <Box
-              custom={isback}
-              variants={boxVariants}
-              initial="entry"
-              animate="center"
-              exit="exit"
-              key={visible}
-            >
-              {visible}
-            </Box>
-          </AnimatePresence>
-          <button onClick={next}>next</button>
-          <button onClick={prev}>prev</button>
-        </Wrapper>
-    )
+function Amima5() {
+  const [visible, setVisible] = useState(1);
+  const [isback, setIsBack] = useState(false);
+  const next = () => {
+    setIsBack(false);
+    setVisible((prev) => (prev === 10 ? 10 : prev + 1));
+  };
+  const prev = () => {
+    setIsBack(true);
+    setVisible((prev) => (prev === 1 ? 1 : prev - 1));
+  };
+  return (
+    <Wrapper>
+      <AnimatePresence exitBeforeEnter custom={isback}>
+        <Box
+          custom={isback}
+          variants={boxVariants}
+          initial="entry"
+          animate="center"
+          exit="exit"
+          key={visible}
+        >
+          {visible}
+        </Box>
+      </AnimatePresence>
+      <button onClick={next}>next</button>
+      <button onClick={prev}>prev</button>
+    </Wrapper>
+  );
 }
 
-export default Home;
+export default Amima5;
